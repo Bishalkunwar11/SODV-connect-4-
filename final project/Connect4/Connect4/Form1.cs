@@ -13,6 +13,10 @@ namespace Connect4
         Game game1 = new Game();
         //List of Games to save and redraw with
         List<Game> pieces;
+        // Session score counters
+        private int player1Wins = 0;
+        private int player2Wins = 0;
+        private int draws = 0;
 
         //constructor of the Form
         public Form1()
@@ -62,17 +66,56 @@ namespace Connect4
 
             if (game1.WinningPlayer() == Color.Red)
             {
-                MessageBox.Show("Red Player Wins", "Red Beat Black", MessageBoxButtons.OK);
-                game1.Reset();
-                panel1.Invalidate();
+                player1Wins++;
+                UpdateScoreLabels();
+                MessageBox.Show(
+                    string.Format("Red Player Wins!\n\nScore — Player 1 (Red): {0}  |  Player 2 (Black): {1}  |  Draws: {2}", player1Wins, player2Wins, draws),
+                    "Player 1 Wins!",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+                ResetRound();
             }
             else if (game1.WinningPlayer() == Color.Black)
             {
-                MessageBox.Show("Black Player Wins", "Black Beat Red", MessageBoxButtons.OK);
-                game1.Reset();
-                panel1.Invalidate();
+                player2Wins++;
+                UpdateScoreLabels();
+                MessageBox.Show(
+                    string.Format("Black Player Wins!\n\nScore — Player 1 (Red): {0}  |  Player 2 (Black): {1}  |  Draws: {2}", player1Wins, player2Wins, draws),
+                    "Player 2 Wins!",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+                ResetRound();
+            }
+            else if (game1.IsBoardFull())
+            {
+                draws++;
+                UpdateScoreLabels();
+                MessageBox.Show(
+                    string.Format("It's a Draw!\n\nScore — Player 1 (Red): {0}  |  Player 2 (Black): {1}  |  Draws: {2}", player1Wins, player2Wins, draws),
+                    "Draw!",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+                ResetRound();
             }
             
+        }
+
+        // Helper: reset the board and piece list for a new round
+        private void ResetRound()
+        {
+            pieces = new List<Game>();
+            game1.Reset();
+            lblTurn.ForeColor = Color.Red;
+            lblTurn.Text = "Player 1's Turn";
+            panel1.Invalidate();
+        }
+
+        // Helper: refresh score labels
+        private void UpdateScoreLabels()
+        {
+            lblPlayer1Score.Text = string.Format("Player 1: {0}", player1Wins);
+            lblPlayer2Score.Text = string.Format("Player 2: {0}", player2Wins);
+            lblDrawScore.Text    = string.Format("Draws:   {0}", draws);
         }
 
         //Method for reset button, resets game when clicked
@@ -83,6 +126,7 @@ namespace Connect4
             result = MessageBox.Show("Are you sure you want to reset?", "Clear", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if(result == DialogResult.Yes)
             {
+                pieces = new List<Game>();
                 panel1.Invalidate();
                 game1.Reset();
                 lblTurn.ForeColor = Color.Red;
