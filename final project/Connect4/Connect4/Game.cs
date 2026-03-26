@@ -317,11 +317,39 @@ namespace Connect4
                 return Color.Empty;
         }
 
-        //Method to override ToString to write information to a file
-       /* public override string ToString()
+        //Method to check if every column is full (board completely filled — draw condition)
+        public bool IsBoardFull()
         {
-            
-            return string.Format()
-        }*/
+            for (int col = 0; col < 7; col++)
+            {
+                if (full[col] >= 0)
+                    return false;
+            }
+            return true;
+        }
+
+        //Method to override ToString to write board state to a file
+        public override string ToString()
+        {
+            System.Text.StringBuilder sb = new System.Text.StringBuilder();
+            sb.AppendLine("Connect 4 — Saved Game State");
+            sb.AppendLine(string.Format("Current Turn: {0}", player1 ? "Player 1 (Red)" : "Player 2 (Black)"));
+            sb.AppendLine();
+            sb.AppendLine("Board (row 0 = top, row 5 = bottom):");
+            for (int row = 0; row < 6; row++)
+            {
+                for (int col = 0; col < 7; col++)
+                {
+                    switch (board[col, row])
+                    {
+                        case state.player1: sb.Append("R "); break;
+                        case state.player2: sb.Append("B "); break;
+                        default:            sb.Append(". "); break;
+                    }
+                }
+                sb.AppendLine();
+            }
+            return sb.ToString();
+        }
     }
 }

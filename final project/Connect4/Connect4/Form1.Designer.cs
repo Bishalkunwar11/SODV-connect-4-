@@ -35,6 +35,10 @@
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lblTurn = new System.Windows.Forms.Label();
             this.btnReset = new System.Windows.Forms.Button();
+            this.lblScoreHeading = new System.Windows.Forms.Label();
+            this.lblPlayer1Score = new System.Windows.Forms.Label();
+            this.lblPlayer2Score = new System.Windows.Forms.Label();
+            this.lblDrawScore = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -101,6 +105,46 @@
             this.btnReset.UseVisualStyleBackColor = true;
             this.btnReset.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnReset_MouseClick);
             // 
+            // lblScoreHeading
+            // 
+            this.lblScoreHeading.AutoSize = true;
+            this.lblScoreHeading.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.lblScoreHeading.Location = new System.Drawing.Point(25, 155);
+            this.lblScoreHeading.Name = "lblScoreHeading";
+            this.lblScoreHeading.Size = new System.Drawing.Size(80, 13);
+            this.lblScoreHeading.TabIndex = 4;
+            this.lblScoreHeading.Text = "Score";
+            // 
+            // lblPlayer1Score
+            // 
+            this.lblPlayer1Score.AutoSize = true;
+            this.lblPlayer1Score.ForeColor = System.Drawing.Color.Red;
+            this.lblPlayer1Score.Location = new System.Drawing.Point(25, 180);
+            this.lblPlayer1Score.Name = "lblPlayer1Score";
+            this.lblPlayer1Score.Size = new System.Drawing.Size(80, 13);
+            this.lblPlayer1Score.TabIndex = 5;
+            this.lblPlayer1Score.Text = "Player 1: 0";
+            // 
+            // lblPlayer2Score
+            // 
+            this.lblPlayer2Score.AutoSize = true;
+            this.lblPlayer2Score.ForeColor = System.Drawing.Color.Black;
+            this.lblPlayer2Score.Location = new System.Drawing.Point(25, 200);
+            this.lblPlayer2Score.Name = "lblPlayer2Score";
+            this.lblPlayer2Score.Size = new System.Drawing.Size(80, 13);
+            this.lblPlayer2Score.TabIndex = 6;
+            this.lblPlayer2Score.Text = "Player 2: 0";
+            // 
+            // lblDrawScore
+            // 
+            this.lblDrawScore.AutoSize = true;
+            this.lblDrawScore.ForeColor = System.Drawing.Color.DimGray;
+            this.lblDrawScore.Location = new System.Drawing.Point(25, 220);
+            this.lblDrawScore.Name = "lblDrawScore";
+            this.lblDrawScore.Size = new System.Drawing.Size(80, 13);
+            this.lblDrawScore.TabIndex = 7;
+            this.lblDrawScore.Text = "Draws:   0";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -110,9 +154,13 @@
             this.Controls.Add(this.lblTurn);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.menuStrip1);
+            this.Controls.Add(this.lblScoreHeading);
+            this.Controls.Add(this.lblPlayer1Score);
+            this.Controls.Add(this.lblPlayer2Score);
+            this.Controls.Add(this.lblDrawScore);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Connect 4";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -129,6 +177,10 @@
         private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
         private System.Windows.Forms.Label lblTurn;
         private System.Windows.Forms.Button btnReset;
+        private System.Windows.Forms.Label lblScoreHeading;
+        private System.Windows.Forms.Label lblPlayer1Score;
+        private System.Windows.Forms.Label lblPlayer2Score;
+        private System.Windows.Forms.Label lblDrawScore;
 
 
     }
